@@ -1,0 +1,6 @@
+@PaySmart_HostAddress = http://localhost:5013
+
+GET {{PaySmart_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
