@@ -10,7 +10,18 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
-
+// Add CORS policy to allow requests from the frontend
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AngularPolicy",
+        policy =>
+        {
+            policy
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowAnyOrigin();
+        });
+});
 //Step 2: Build the app
 var app = builder.Build();
 
@@ -24,6 +35,7 @@ if (app.Environment.IsDevelopment())
 }
 // Step 3: Configure middleware
 app.UseHttpsRedirection();
+app.UseCors("AngularPolicy");
 app.UseAuthorization();
 
 //Step 4: Map endpoints

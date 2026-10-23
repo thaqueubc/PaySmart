@@ -4,14 +4,14 @@ using PaySmart.Models;
 namespace PaySmart.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class LoginController : ControllerBase
     {
         private readonly List<(string UserName, string Password)> _users =
         [
             ("admin", "admin123"),
             ("john", "password"),
-            ("demo", "demo123")
+            ("demo", "demo123!")
         ];
 
         [HttpPost]

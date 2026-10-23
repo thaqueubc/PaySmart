@@ -1,0 +1,48 @@
+﻿<section class="login-layout">
+      <div class="login-side">
+        <a class="back-link" routerLink="/"><span aria-hidden="true">&lt;</span> Back to home</a>
+        <div class="login-content">
+          <span class="section-kicker">WELCOME BACK</span>
+          <h1>Good to see<br />you <span>again.</span></h1>
+          <p class="intro">Log in to pick up right where you left off.</p>
+          @if (!submitted()) {
+            <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" novalidate>
+              <label for="username">Username</label>
+              <div class="input-wrap" [class.invalid]="username.invalid && (username.touched || loginForm.submitted)">
+                <span class="field-icon" aria-hidden="true">U</span>
+                <input #username="ngModel" id="username" name="username" type="text" placeholder="Enter your username" autocomplete="username" required minlength="3" [(ngModel)]="credentials.username" />
+              </div>
+              @if (username.invalid && (username.touched || loginForm.submitted)) {
+                <small class="field-error">@if (username.errors?.['required']) { Please enter your username. } @else { Username must be at least 3 characters. }</small>
+              }
+              <div class="password-label"><label for="password">Password</label><a href="#password-help" (click)="showHelp($event)">Forgot password?</a></div>
+              <div class="input-wrap" [class.invalid]="password.invalid && (password.touched || loginForm.submitted)">
+                <span class="field-icon lock-icon" aria-hidden="true">*</span>
+                <input #password="ngModel" id="password" name="password" [type]="showPassword() ? 'text' : 'password'" placeholder="Enter your password" autocomplete="current-password" required minlength="8" [(ngModel)]="credentials.password" />
+                <button class="visibility-toggle" type="button" (click)="showPassword.update(value => !value)" [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'">{{ showPassword() ? 'Hide' : 'Show' }}</button>
+              </div>
+              @if (password.invalid && (password.touched || loginForm.submitted)) {
+                <small class="field-error">@if (password.errors?.['required']) { Please enter your password. } @else { Password must be at least 8 characters. }</small>
+              }
+              <label class="remember-row"><input type="checkbox" name="remember" [(ngModel)]="credentials.remember" /><span class="custom-checkbox" aria-hidden="true"></span> Keep me logged in</label>
+              <button class="submit-button" type="submit">Log in <span aria-hidden="true">&gt;</span></button>
+              @if (formMessage()) { <p class="form-message" role="status">{{ formMessage() }}</p> }
+              <p class="signup-note">New to PaySmart? <a routerLink="/login">Create an account</a></p>
+            </form>
+          } @else {
+            <div class="success-panel" role="status"><span class="success-check">OK</span><h2>You're all set.</h2><p>{{ formMessage() }}</p><button class="submit-button" (click)="submitted.set(false)">Back to log in</button></div>
+          }
+          <p class="security-note"><span aria-hidden="true">*</span> Your information is private and secure.</p>
+        </div>
+      </div>
+      <aside class="quote-side">
+        <div class="quote-topline"><span class="quote-spark">*</span> A little clarity goes a long way</div>
+        <div class="quote-content"><span class="quote-mark">&quot;</span><blockquote>It feels good to finally know where my money is going and to have a plan that actually works for me.</blockquote><div class="quote-author"><span class="author-avatar">J</span><span><b>Jamie R.</b><small>PaySmart member</small></span><span class="quote-stars">*****</span></div></div>
+        <div class="quote-bottom"><span>PERSONAL FINANCE, MADE FRIENDLIER</span><span>01 / 03</span></div>
+        <div class="decor-circle decor-one"></div><div class="decor-circle decor-two"></div>
+      </aside>
+    </section>
+
+
+
+

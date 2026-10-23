@@ -1,0 +1,25 @@
+:host { min-height: 100vh; display: flex; flex-direction: column; }
+
+.site-header {
+  height: 82px; padding: 0 clamp(22px, 7vw, 108px); display: flex; align-items: center;
+  justify-content: space-between; border-bottom: 1px solid #e9ece7; background: #fbfcf9;
+}
+.brand { display: inline-flex; align-items: center; gap: 10px; color: #193c32; text-decoration: none; font-size: 21px; font-weight: 750; letter-spacing: -1px; }
+.brand-mark { width: 31px; height: 31px; display: grid; place-items: center; border-radius: 10px 10px 10px 3px; color: white; background: #317762; font-size: 17px; font-weight: 750; letter-spacing: 0; }
+.brand-accent { color: #589b7b; }
+nav { display: flex; align-items: center; gap: clamp(20px, 3.3vw, 48px); }
+.nav-link { color: #65746d; text-decoration: none; font-size: 14px; font-weight: 550; transition: color .2s; }
+.nav-link:hover { color: #23654f; }
+.login-link { display: inline-flex; align-items: center; gap: 10px; padding: 11px 19px; border: 1px solid #d6e2db; border-radius: 8px; color: #285e4b; text-decoration: none; font-size: 14px; font-weight: 650; transition: background .2s, border-color .2s; }
+.login-link:hover { background: #edf5ef; border-color: #a9c8b5; }
+main { flex: 1; }
+.site-footer { min-height: 76px; border-top: 1px solid #e9ece7; padding: 16px clamp(22px, 7vw, 108px); display: flex; align-items: center; justify-content: space-between; gap: 20px; color: #849088; font-size: 12px; }
+.footer-brand { font-size: 17px; }
+.footer-brand .brand-mark { width: 25px; height: 25px; border-radius: 8px 8px 8px 2px; font-size: 14px; }
+@media (max-width: 620px) {
+  .site-header { height: 70px; padding-inline: 19px; }
+  nav { gap: 14px; }
+  .nav-link { display: none; }
+  .site-footer { padding-inline: 20px; flex-wrap: wrap; }
+  .site-footer > span:nth-child(2) { display: none; }
+}
